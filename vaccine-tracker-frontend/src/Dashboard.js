@@ -9,9 +9,31 @@ import LineGraphComp from './LineGraphComp.js';
 
 class Dashboard extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            tableData: [],
+            lineGraphData: props.lineGraphData
+        }
+    }
 
     componentDidMount() {
-
+       fetch("https://jsonplaceholder.typicode.com/posts")
+       .then(res => res.json())
+       .then(
+         (result) => {
+           this.setState({
+             tableData: result
+           });
+         }, () => {console.log(this.state.tableData)},
+         // Note: it's important to handle errors here
+         // instead of a catch() block so that we don't swallow
+         // exceptions from actual bugs in components.
+         (error) => {
+           console.log("error here");
+         }
+       )
+ 
     }
 
     render() {
@@ -25,76 +47,13 @@ class Dashboard extends React.Component {
 
                     {/*DATA VISUALIZATIONS -- TEMPORARILY HARD CODED IN*/}
                     <Row gutter={80} align="center" >
-                        <Col className="dataTable" span={6}><DataTable data={[
-                            {
-                                rank: '1',
-                                distributionCenter: 'Northeastern University',
-                                jurisdiction: 'Boston',
-                                wasted: '4,329',
-                            },
-                            {
-                                rank: '2',
-                                distributionCenter: 'Northeastern University',
-                                jurisdiction: 'Boston',
-                                wasted: '4,329',
-                            },
-                            {
-                                rank: '3',
-                                distributionCenter: 'Northeastern University',
-                                jurisdiction: 'Boston',
-                                wasted: '4,329',
-                            },
-                            {
-                                rank: '4',
-                                distributionCenter: 'Northeastern University',
-                                jurisdiction: 'Boston',
-                                wasted: '4,329',
-                            },
-                            {
-                                rank: '5',
-                                distributionCenter: 'Northeastern University',
-                                jurisdiction: 'Boston',
-                                wasted: '4,329',
-                            },
-                            {
-                                rank: '6',
-                                distributionCenter: 'Northeastern University',
-                                jurisdiction: 'Boston',
-                                wasted: '4,329',
-                            },
-                            {
-                                rank: '7',
-                                distributionCenter: 'Northeastern University',
-                                jurisdiction: 'Boston',
-                                wasted: '4,329',
-                            },
-                            {
-                                rank: '8',
-                                distributionCenter: 'Northeastern University',
-                                jurisdiction: 'Boston',
-                                wasted: '4,329',
-                            },
-                            {
-                                rank: '9',
-                                distributionCenter: 'Northeastern University',
-                                jurisdiction: 'Boston',
-                                wasted: '4,329',
-                            },
-                        ]} /></Col>
-                        <Col className ="lineGraph" span={6}><LineGraphComp dates={[
-                            { x: '1/1/21', y: 22918 },
-                            { x: '2/1/21', y: 87923 },
-                            { x: '3/1/21', y: 48472},
-                            { x: '4/1/21', y: 48378 },
-                            { x: '5/1/21', y: 10892 },
-                            { x: '6/1/21', y: 48294 },
-                            { x: '7/1/21', y: 22918 },
-                            { x: '8/1/21', y: 87923 },
-                            { x: '9/1/21', y: 48472},
-                            { x: '10/1/21', y: 48378 },
-                            { x: '11/1/21', y: 10892 },
-                            { x: '12/1/21', y: 48294 },
-                        ]} /></Col>
+                        <Col className="dataTable" span={6}>
+                            <DataTable data={
+                            this.state.tableData
+                        } /></Col>
+                        <Col className="lineGraph" span={6}><LineGraphComp dates={this.state.lineGraphData
+
+                        } /></Col> 
                     </Row>
 
                     {/*STATIC FOOTER*/}
