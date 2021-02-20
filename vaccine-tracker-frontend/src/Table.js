@@ -20,7 +20,6 @@ export default function DataTable({ data }) {
           accessor: 'wasted',
         }
       ];
-
     
       const {
         getTableProps,

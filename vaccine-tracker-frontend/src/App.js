@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Switch>
-          <Route path="/Dashboard" component={Dashboard} />
+          <Route path="/" component={Dashboard} />
           {/*<Route path="/FormEntry" component={FormEntry} />*/}
           <Route component={Error} />
         </Switch>
