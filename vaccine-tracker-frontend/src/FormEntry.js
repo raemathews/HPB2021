@@ -9,6 +9,7 @@ import "./FormEntry.css";
 class FormEntry extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       hospital: "",
       county: "",
@@ -56,20 +57,24 @@ class FormEntry extends React.Component {
         }
       ]
     });
+    console.log(this.state.hospital);
     this.handleClear();
-    if (decision) {
-      this.handleClear();
-    }
+    //console.log(d)
     e.preventDefault();
   }
 
   handleClear() {
-    this.setState({
-      hospital: "",
-      county: "",
-      date: "",
-      vaccines: ""
-    });
+    this.setState(
+      {
+        hospital: "",
+        county: "",
+        date: "",
+        vaccines: 0
+      },
+      () => {
+        console.log("Inside handleclear", this.state.hospital);
+      }
+    );
   }
 
   render() {
@@ -85,7 +90,7 @@ class FormEntry extends React.Component {
               Hospital:{" "}
               <input
                 className="search-box"
-                value={this.state.hospital.value}
+                value={this.state.hospital}
                 onChange={this.handleHospital}
               />
             </label>
@@ -94,7 +99,7 @@ class FormEntry extends React.Component {
               County:{" "}
               <input
                 className="search-box"
-                value={this.state.county.value}
+                value={this.state.county}
                 onChange={this.handleCounty}
               />
             </label>
@@ -103,7 +108,7 @@ class FormEntry extends React.Component {
               Date:{" "}
               <input
                 className="search-box"
-                value={this.state.date.value}
+                value={this.state.date}
                 onChange={this.handleDate}
               />
             </label>{" "}
@@ -112,7 +117,7 @@ class FormEntry extends React.Component {
               Vaccines:{" "}
               <input
                 className="search-box"
-                value={this.state.vaccines.value}
+                value={this.state.vaccines}
                 onChange={this.handleVaccines}
               />
             </label>{" "}
