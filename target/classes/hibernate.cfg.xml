@@ -18,6 +18,6 @@
         <property name="hbm2ddl.auto">validate</property>
 
         <!-- Names the annotated entity class -->
-        <mapping class="Hospitals.Hospital"/>
+        <mapping class="main.java.Hospitals.Hospital"/>
     </session-factory>
 </hibernate-configuration>
