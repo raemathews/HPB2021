@@ -1,13 +1,14 @@
 import React from 'react';
-{/*import { Table } from 'Table.js'*/}
-{/*import { LineGraph } from 'LineGraph.js'*/}
+
+import { Row, Col } from 'react-simple-flex-grid';
+import "react-simple-flex-grid/lib/main.css";
+import { StyledDashboard } from './Dashboard.styled.js';
+import DataTable from './Table';
+import LineGraphComp from './LineGraphComp.js';
 
 
 class Dashboard extends React.Component {
 
-    constructor() {
-
-    }
 
     componentDidMount() {
 
@@ -15,38 +16,101 @@ class Dashboard extends React.Component {
 
     render() {
         return (
-            <Container>
-                {/*STICKY "GLOBAL NAV BAR" - but no actual navigation?*/}
-                <Row>
-                    <Col>{/*ICON*/}</Col>
-                    <Col>Vaccine Waste Dashboard</Col>
-                </Row>
+            <StyledDashboard>
+                <div className="cont">
+                    {/*STICKY "GLOBAL NAV BAR" - but no actual navigation?*/}
+                    <Row className="stickyHeader">
+                        <Col offset={1}>{/*ICON*/}</Col>
+                        <Col >Vaccine Waste Dashboard</Col>
+                    </Row>
 
-                {/*TITLE OF DASHBOARD PAGE*/}
-                <Row>
-                    <Col></Col>
-                    <Col>Expired Vaccines</Col>
-                </Row>
+                    {/*TITLE OF DASHBOARD PAGE*/}
+                    <Row>
+                        <Col className="pageTitle" offset={1}>Expired Vaccines</Col>
+                    </Row>
 
-                {/*TITLES OF DATA VISUALIZATIONS*/}
-                <Row>
-                    <Col>Top Most Wasteful Counties</Col>
-                    <Col></Col>
-                    <Col>Wasted Vaccines Over Time</Col>
-                </Row>
+                    {/*TITLES OF DATA VISUALIZATIONS*/}
+                    <Row offset={1} align="center">
+                        <Col className="tableName" span={6}>Top Most Wasteful Counties</Col>
+                        <Col className="tableName" span={6}>Wasted Vaccines Over Time</Col>
+                    </Row>
 
-                {/*DATA VISUALIZATIONS*/}
-                <Row>
-                    <Col>{/*TABLE*/}</Col>
-                    <Col></Col>
-                    <Col>{/*LINE GRAPH*/}</Col>
-                </Row>
+                    {/*DATA VISUALIZATIONS -- TEMPORARILY HARD CODED IN*/}
+                    <Row gutter={80} align="center" >
+                        <Col className="dataTable" span={6}><DataTable data={[
+                            {
+                                rank: '1',
+                                distributionCenter: 'Northeastern University',
+                                jurisdiction: 'Boston',
+                                wasted: '4,329',
+                            },
+                            {
+                                rank: '2',
+                                distributionCenter: 'Northeastern University',
+                                jurisdiction: 'Boston',
+                                wasted: '4,329',
+                            },
+                            {
+                                rank: '3',
+                                distributionCenter: 'Northeastern University',
+                                jurisdiction: 'Boston',
+                                wasted: '4,329',
+                            },
+                            {
+                                rank: '4',
+                                distributionCenter: 'Northeastern University',
+                                jurisdiction: 'Boston',
+                                wasted: '4,329',
+                            },
+                            {
+                                rank: '5',
+                                distributionCenter: 'Northeastern University',
+                                jurisdiction: 'Boston',
+                                wasted: '4,329',
+                            },
+                            {
+                                rank: '6',
+                                distributionCenter: 'Northeastern University',
+                                jurisdiction: 'Boston',
+                                wasted: '4,329',
+                            },
+                            {
+                                rank: '7',
+                                distributionCenter: 'Northeastern University',
+                                jurisdiction: 'Boston',
+                                wasted: '4,329',
+                            },
+                            {
+                                rank: '8',
+                                distributionCenter: 'Northeastern University',
+                                jurisdiction: 'Boston',
+                                wasted: '4,329',
+                            },
+                            {
+                                rank: '9',
+                                distributionCenter: 'Northeastern University',
+                                jurisdiction: 'Boston',
+                                wasted: '4,329',
+                            },
+                        ]} /></Col>
+                        <Col className ="lineGraph" span={6}><LineGraphComp dates={[
+                            { x: '1/1/21', y: 22918 },
+                            { x: '2/1/21', y: 87923 },
+                            { x: '3/1/21', y: 48472},
+                            { x: '4/1/21', y: 48378 },
+                            { x: '5/1/21', y: 10892 },
+                            { x: '6/1/21', y: 48294 },
+                        ]} /></Col>
+                    </Row>
 
-                {/*STATIC FOOTER*/}
-                <Row>
-                    <Col>{/*FOOTER*/}</Col>
-                </Row>
-            </Container>
+                    {/*STATIC FOOTER*/}
+                    <Row>
+                        <Col>{/*FOOTER*/}</Col>
+                    </Row>
+
+                </div>
+            </StyledDashboard>
+
         )
     }
 }
