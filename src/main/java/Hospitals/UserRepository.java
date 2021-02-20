@@ -1,5 +1,6 @@
-package Hospitals;
+package main.java.Hospitals;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 
@@ -7,5 +8,4 @@ import org.springframework.data.repository.CrudRepository;
 // CRUD refers Create, Read, Update, Delete
 
 public interface UserRepository extends CrudRepository<Hospital, Integer> {
-  Iterable<Hospital> findByCounty(String s);
 }

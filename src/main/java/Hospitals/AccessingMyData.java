@@ -1,4 +1,4 @@
-package Hospitals;
+package main.java.Hospitals;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

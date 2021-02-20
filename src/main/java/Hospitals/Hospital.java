@@ -1,4 +1,4 @@
-package Hospitals;
+package main.java.Hospitals;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
