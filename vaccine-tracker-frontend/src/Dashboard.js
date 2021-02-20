@@ -17,8 +17,14 @@ class Dashboard extends React.Component {
         }
     }
 
+    //localhost:8080/HPB2021/all  every single entry
+    //localhost:8080/HPB2021/total   total vaccines wasted of all time nationwide
+    //localhost:8080/HPB2021/byDate   for graph (daily totals)
+    //localhost:8080/HPB2021/selectCounty   all grand total vaccines wasted by hospitals in this county
+    //localhost:8080/HPB2021/add    accepts a json
+
     componentDidMount() {
-       fetch("https://jsonplaceholder.typicode.com/posts")
+       fetch("localhost:8080/HPB2021/counties")
        .then(res => res.json())
        .then(
          (result) => {

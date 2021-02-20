@@ -93,12 +93,3 @@ public class MainController {
 
   }
 }
-
-
-// This returns a JSON or XML with the users
-//    Iterable<Hospital> iH = userRepository.findAll();
-//    List<Hospital> lH = new ArrayList<Hospital>((Collection<? extends Hospital>) iH);
-//
-//    for(Hospital h : lH) {
-//      System.out.println(h.toString());
-//    }
