@@ -1,9 +1,9 @@
-import React from "react";
-// import { Modal } from "./Modal";
-// import { Row, Col } from "react-simple-flex-grid";
+import React, { useState } from "react";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css";
 import styled from "styled-components";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import "./FormEntry.css";
 
 class FormEntry extends React.Component {
@@ -13,23 +13,31 @@ class FormEntry extends React.Component {
       hospital: "",
       county: "",
       date: "",
-      vaccines: 0,
-      show: false
+      vaccines: 0
     };
 
-    this.showModal = (e) => {
-      this.setState({
-        show: !this.state.show
-      });
-    };
-
-    this.handleChange = this.handleChange.bind(this);
+    this.handleHospital = this.handleHospital.bind(this);
+    this.handleCounty = this.handleCounty.bind(this);
+    this.handleDate = this.handleDate.bind(this);
+    this.handleVaccines = this.handleVaccines.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClear = this.handleClear.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({ value: e.target.value });
+  handleHospital(e) {
+    this.setState({ hospital: e.target.value });
+  }
+
+  handleCounty(e) {
+    this.setState({ county: e.target.value });
+  }
+
+  handleDate(e) {
+    this.setState({ date: e.target.value });
+  }
+
+  handleVaccines(e) {
+    this.setState({ vaccines: e.target.value });
   }
 
   handleSubmit(e) {
@@ -48,6 +56,7 @@ class FormEntry extends React.Component {
         }
       ]
     });
+    this.handleClear();
     if (decision) {
       this.handleClear();
     }
@@ -58,7 +67,8 @@ class FormEntry extends React.Component {
     this.setState({
       hospital: "",
       county: "",
-      date: ""
+      date: "",
+      vaccines: ""
     });
   }
 
@@ -76,7 +86,7 @@ class FormEntry extends React.Component {
               <input
                 className="search-box"
                 value={this.state.hospital.value}
-                onChange={this.handleChange}
+                onChange={this.handleHospital}
               />
             </label>
             <label>
@@ -85,7 +95,7 @@ class FormEntry extends React.Component {
               <input
                 className="search-box"
                 value={this.state.county.value}
-                onChange={this.handleChange}
+                onChange={this.handleCounty}
               />
             </label>
             <label>
@@ -94,7 +104,7 @@ class FormEntry extends React.Component {
               <input
                 className="search-box"
                 value={this.state.date.value}
-                onChange={this.handleChange}
+                onChange={this.handleDate}
               />
             </label>{" "}
             <label>
@@ -103,7 +113,7 @@ class FormEntry extends React.Component {
               <input
                 className="search-box"
                 value={this.state.vaccines.value}
-                onChange={this.handleChange}
+                onChange={this.handleVaccines}
               />
             </label>{" "}
             <input className="button" type="submit" value="Submit" />
