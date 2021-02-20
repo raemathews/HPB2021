@@ -1,6 +1,7 @@
-import { render } from '@testing-library/react';
 import React from 'react';
 {/*import { Table } from 'Table.js'*/}
+{/*import { LineGraph } from 'LineGraph.js'*/}
+
 
 class Dashboard extends React.Component {
 
