@@ -18,12 +18,6 @@ class Dashboard extends React.Component {
         return (
             <StyledDashboard>
                 <div className="cont">
-                    {/*STICKY "GLOBAL NAV BAR" - but no actual navigation?*/}
-                    <Row className="stickyHeader">
-                        <Col offset={1}>{/*ICON*/}</Col>
-                        <Col >Vaccine Waste Dashboard</Col>
-                    </Row>
-
                     {/*TITLE OF DASHBOARD PAGE*/}
                     <Row>
                         <Col className="pageTitle" offset={1}>Expired Vaccines</Col>

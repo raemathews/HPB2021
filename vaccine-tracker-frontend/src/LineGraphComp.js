@@ -51,7 +51,7 @@ export default class LineGraphComp extends React.Component {
                 theme: {
                     monochrome: {
                       enabled: true,
-                      color: '#087096',
+                      color: '#15929d',
                       shadeTo: 'light',
                       shadeIntensity: 0.65
                     }

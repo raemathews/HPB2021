@@ -5,15 +5,6 @@ import React from "react";
 import styled from "styled-components";
 import "./FormEntry.css";
 
-const Button = styled.button`
-  color: palevioletred;
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid palevioletred;
-  border-radius: 3px;
-`;
-
 class FormEntry extends React.Component {
   constructor(props) {
     super(props);
@@ -57,17 +48,17 @@ class FormEntry extends React.Component {
 
   render() {
     return (
-      <div>
-        <row>
+      <div className="form-entry">
+        <div>
           <h1>Vaccine Waste Data Entry</h1>
-        </row>
-        <row class="styled-form-wrapper">
-          <form class="styled-form" onSubmit={this.handleSubmit}>
+        </div>
+        <div className="styled-form-wrapper">
+          <form className="styled-form" onSubmit={this.handleSubmit}>
             <label>
               {" "}
               Hospital:{" "}
               <input
-                class="search-box"
+                className="search-box"
                 value={this.state.hospital.value}
                 onChange={this.handleChange}
               />
@@ -76,7 +67,7 @@ class FormEntry extends React.Component {
               {" "}
               County:{" "}
               <input
-                class="search-box"
+                className="search-box"
                 value={this.state.county.value}
                 onChange={this.handleChange}
               />
@@ -85,7 +76,7 @@ class FormEntry extends React.Component {
               {" "}
               Date:{" "}
               <input
-                class="search-box"
+                className="search-box"
                 value={this.state.date.value}
                 onChange={this.handleChange}
               />
@@ -94,14 +85,14 @@ class FormEntry extends React.Component {
               {" "}
               Vaccines:{" "}
               <input
-                class="search-box"
+                className="search-box"
                 value={this.state.vaccines.value}
                 onChange={this.handleChange}
               />
             </label>{" "}
-            <input class="button" type="submit" value="Submit" />
+            <input className="button" type="submit" value="Submit" />
           </form>
-        </row>
+        </div>
       </div>
     );
   }
