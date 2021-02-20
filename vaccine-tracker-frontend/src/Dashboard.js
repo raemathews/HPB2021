@@ -29,12 +29,6 @@ class Dashboard extends React.Component {
                         <Col className="pageTitle" offset={1}>Expired Vaccines</Col>
                     </Row>
 
-                    {/*TITLES OF DATA VISUALIZATIONS*/}
-                    <Row offset={1} align="center">
-                        <Col className="tableName" span={6}>Top Most Wasteful Counties</Col>
-                        <Col className="tableName" span={6}>Wasted Vaccines Over Time</Col>
-                    </Row>
-
                     {/*DATA VISUALIZATIONS -- TEMPORARILY HARD CODED IN*/}
                     <Row gutter={80} align="center" >
                         <Col className="dataTable" span={6}><DataTable data={[
@@ -100,6 +94,12 @@ class Dashboard extends React.Component {
                             { x: '4/1/21', y: 48378 },
                             { x: '5/1/21', y: 10892 },
                             { x: '6/1/21', y: 48294 },
+                            { x: '7/1/21', y: 22918 },
+                            { x: '8/1/21', y: 87923 },
+                            { x: '9/1/21', y: 48472},
+                            { x: '10/1/21', y: 48378 },
+                            { x: '11/1/21', y: 10892 },
+                            { x: '12/1/21', y: 48294 },
                         ]} /></Col>
                     </Row>
 

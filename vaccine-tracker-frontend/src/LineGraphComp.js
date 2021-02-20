@@ -69,18 +69,12 @@ export default class LineGraphComp extends React.Component {
                 },
                 xaxis: {
                     fontFamily: 'Arial, sans-serif',
-                    type: 'datetime',
-                    labels: {
-                        format: 'M/d/yy',
-                    }
+                    type: 'text',
+
                 },
                 tooltip: {
                     shared: false,
-                    y: {
-                        formatter: function (val) {
-                            return (val)
-                        }
-                    }
+
                 }
             },
 
