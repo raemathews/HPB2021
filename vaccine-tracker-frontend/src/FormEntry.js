@@ -1,7 +1,8 @@
 import React from "react";
 // import { Modal } from "./Modal";
 // import { Row, Col } from "react-simple-flex-grid";
-// import "react-simple-flex-grid/lib/main.css";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css";
 import styled from "styled-components";
 import "./FormEntry.css";
 
@@ -32,9 +33,24 @@ class FormEntry extends React.Component {
   }
 
   handleSubmit(e) {
-    alert("testing");
-    this.handleClear();
-    this.showModal(e);
+    let decision;
+    confirmAlert({
+      title: "Confirm to submit",
+      message: "Are you sure to do this.",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => (decision = true)
+        },
+        {
+          label: "No",
+          onClick: () => (decision = false)
+        }
+      ]
+    });
+    if (decision) {
+      this.handleClear();
+    }
     e.preventDefault();
   }
 
@@ -99,4 +115,3 @@ class FormEntry extends React.Component {
 }
 
 export default FormEntry;
-
