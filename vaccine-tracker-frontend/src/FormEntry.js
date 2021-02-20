@@ -61,8 +61,8 @@ class FormEntry extends React.Component {
         <row>
           <h1>Vaccine Waste Data Entry</h1>
         </row>
-        <row>
-          <form onSubmit={this.handleSubmit}>
+        <row class="styled-form-wrapper">
+          <form class="styled-form" onSubmit={this.handleSubmit}>
             <label>
               {" "}
               Hospital:{" "}
@@ -108,3 +108,4 @@ class FormEntry extends React.Component {
 }
 
 export default FormEntry;
+
