@@ -32,7 +32,14 @@ class Dashboard extends React.Component {
         
     }
 
+    //localhost:8080/HPB2021/all  every single entry
+    //localhost:8080/HPB2021/total   total vaccines wasted of all time nationwide
+    //localhost:8080/HPB2021/byDate   for graph (daily totals)
+    //localhost:8080/HPB2021/selectCounty   all grand total vaccines wasted by hospitals in this county
+    //localhost:8080/HPB2021/add    accepts a json
+
     componentDidMount() {
+
         this.handleFetch("counties")
     }
 
@@ -61,6 +68,7 @@ class Dashboard extends React.Component {
         else {
             this.handleFetch("counties?desc=false")
         }
+
     }
 
     render() {

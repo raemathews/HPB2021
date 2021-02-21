@@ -1,49 +1,80 @@
-import React from "react";
-// import { Modal } from "./Modal";
-// import { Row, Col } from "react-simple-flex-grid";
-// import "react-simple-flex-grid/lib/main.css";
+import React, { useState } from "react";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css";
 import styled from "styled-components";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import "./FormEntry.css";
 
 class FormEntry extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       hospital: "",
       county: "",
       date: "",
-      vaccines: 0,
-      show: false
+      vaccines: 0
     };
 
-    this.showModal = (e) => {
-      this.setState({
-        show: !this.state.show
-      });
-    };
-
-    this.handleChange = this.handleChange.bind(this);
+    this.handleHospital = this.handleHospital.bind(this);
+    this.handleCounty = this.handleCounty.bind(this);
+    this.handleDate = this.handleDate.bind(this);
+    this.handleVaccines = this.handleVaccines.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClear = this.handleClear.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({ value: e.target.value });
+  handleHospital(e) {
+    this.setState({ hospital: e.target.value });
+  }
+
+  handleCounty(e) {
+    this.setState({ county: e.target.value });
+  }
+
+  handleDate(e) {
+    this.setState({ date: e.target.value });
+  }
+
+  handleVaccines(e) {
+    this.setState({ vaccines: e.target.value });
   }
 
   handleSubmit(e) {
-    alert("testing");
+    let decision;
+    confirmAlert({
+      title: "Confirm to submit",
+      message: "Are you sure to do this.",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => (decision = true)
+        },
+        {
+          label: "No",
+          onClick: () => (decision = false)
+        }
+      ]
+    });
+    console.log(this.state.hospital);
     this.handleClear();
-    this.showModal(e);
+    //console.log(d)
     e.preventDefault();
   }
 
   handleClear() {
-    this.setState({
-      hospital: "",
-      county: "",
-      date: ""
-    });
+    this.setState(
+      {
+        hospital: "",
+        county: "",
+        date: "",
+        vaccines: 0
+      },
+      () => {
+        console.log("Inside handleclear", this.state.hospital);
+      }
+    );
   }
 
   render() {
@@ -59,8 +90,8 @@ class FormEntry extends React.Component {
               Hospital:{" "}
               <input
                 className="search-box"
-                value={this.state.hospital.value}
-                onChange={this.handleChange}
+                value={this.state.hospital}
+                onChange={this.handleHospital}
               />
             </label>
             <label>
@@ -68,8 +99,8 @@ class FormEntry extends React.Component {
               County:{" "}
               <input
                 className="search-box"
-                value={this.state.county.value}
-                onChange={this.handleChange}
+                value={this.state.county}
+                onChange={this.handleCounty}
               />
             </label>
             <label>
@@ -77,8 +108,8 @@ class FormEntry extends React.Component {
               Date:{" "}
               <input
                 className="search-box"
-                value={this.state.date.value}
-                onChange={this.handleChange}
+                value={this.state.date}
+                onChange={this.handleDate}
               />
             </label>{" "}
             <label>
@@ -86,8 +117,8 @@ class FormEntry extends React.Component {
               Vaccines:{" "}
               <input
                 className="search-box"
-                value={this.state.vaccines.value}
-                onChange={this.handleChange}
+                value={this.state.vaccines}
+                onChange={this.handleVaccines}
               />
             </label>{" "}
             <input className="button" type="submit" value="Submit" />
@@ -99,4 +130,3 @@ class FormEntry extends React.Component {
 }
 
 export default FormEntry;
-
