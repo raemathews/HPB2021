@@ -1,7 +1,7 @@
 h1.header {
   text-align: left;
-  position: absolute;
   padding-left: 100px;
+  padding-top: none;
 }
 
 .mainn {
@@ -9,15 +9,42 @@ h1.header {
 }
 
 ul {
-  display: inline;
+
+  float: left;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-top: 0;
+    padding-right: 9vw;
+    list-style: none;
+    margin-right: 2rem;
+    position: relative;
+    width: 90%;
 }
 
 li {
   list-style-type: none;
+  text-decoration: none;
+  font-size: 1.5rem;
+  float: right;
 }
 
 Button {
   float: right;
   margin-top: 50px;
   margin-right: 50px;
+
+}
+
+Button:hover {
+  cursor: pointer;
+}
+
+.header {
+  float: left;
+  padding-top: none;
+  color:  #24c5d4;
+  padding-left: 3%;
+
 }

@@ -6,7 +6,7 @@ import styled from "styled-components";
 import "./Button.css";
 
 const ToggleButton = (props) => {
-  return <button onClick={props.switch}>Switch</button>;
+  return <button >{props.message}</button>;
 };
 
 export default ToggleButton;
