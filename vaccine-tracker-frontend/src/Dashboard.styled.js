@@ -2,19 +2,14 @@ import styled from 'styled-components';
 
 export const StyledDashboard = styled.a`
 
-
-    .stickyHeader {
-        background: #087096;
-        font-size: 2.6rem;
-        height: 10vh;
-        color: white;
-        position: sticky;
-        padding-top: .5vh;
+    .mainn {
+        background-color: white;
+        color: #24c5d4;
     }
 
     .pageTitle {
         font-size: 1.5rem;
-        padding-top: 2.5vh;
+        padding-top: 10%;
         padding-bottom: 2vh;
     }
 

@@ -2,10 +2,11 @@ import React from 'react';
 
 import { Row, Col } from 'react-simple-flex-grid';
 import "react-simple-flex-grid/lib/main.css";
-import { StyledDashboard } from './Dashboard.styled.js';
+// import { StyledDashboard } from './Dashboard.styled.js';
 import DataTable from './Table';
 import LineGraphComp from './LineGraphComp.js';
 import TableControls from './TableControls';
+import "./styles.css";
 
 
 // function validate()
@@ -29,6 +30,7 @@ class Dashboard extends React.Component {
 
         this.handleFetch = this.handleFetch.bind(this);
         this.handleChangeView = this.handleChangeView.bind(this);
+        this.handleTotal = this.handleTotal.bind(this);
         
     }
 
@@ -71,18 +73,37 @@ class Dashboard extends React.Component {
 
     }
 
+    handleTotal() {
+        let total;
+        fetch("http://localhost:8080/HPB2021/total")
+        .then(res => res.json())
+        .then(
+            (result) => {
+                total = result.count
+            },
+            (error) => {
+                console.log("error here");
+            }
+        )
+        return (
+        <h2>Total Number of Vaccines Wasted: {total}</h2>
+        )
+    }
+
     render() {
         return (
-            <StyledDashboard>
-                <div className="cont">
+            //<StyledDashboard>
+                <div className="cont mainn">
                     {/*TITLE OF DASHBOARD PAGE*/}
                     <Row>
-                        <Col className="pageTitle" offset={1}>Expired Vaccines</Col>
+                        <Col className="pageTitle">Expired Vaccines</Col>
                     </Row>
-
+                    <Row>
+                        <Col>{this.handleTotal()}</Col>
+                    </Row>
                     {/*DROPDOWN MENU*/}
                     <Row>
-                        <Col offset={1}>
+                        <Col>
                             <div>
                                 <label className="dataselection" htmlFor="tablevalues">View: </label>
                                 <select className="form-control mb-3" onChange={this.handleChangeView}>
@@ -94,12 +115,12 @@ class Dashboard extends React.Component {
                     </Row>
 
                     {/*DATA VISUALIZATIONS*/}
-                    <Row gutter={80} align="center" >
-                        <Col className="dataTable" span={6}>
+                    <Row align="center" >
+                        <Col className="dataTable">
                             <DataTable data={
                                 this.state.tableData
                             } /></Col>
-                        <Col className="lineGraph" span={6}><LineGraphComp dates={this.state.lineGraphData
+                        <Col className="lineGraph"><LineGraphComp dates={this.state.lineGraphData
 
                         } /></Col>
                     </Row>
@@ -110,7 +131,7 @@ class Dashboard extends React.Component {
                     </Row>
 
                 </div>
-            </StyledDashboard>
+            //</StyledDashboard>
 
         )
     }
