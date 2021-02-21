@@ -1,5 +1,7 @@
 package main.java.Hospitals;
-
+import org.json.JSONArray;
+import org.apache.commons.lang3.StringEscapeUtils;
+import org.json.JSONObject;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -11,7 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 @Controller // This means that this class is a Controller
 @RequestMapping(path="/HPB2021") // This means URL's start with /demo (after Application path)
@@ -53,7 +60,7 @@ public class MainController {
   }
 
   private String getCVP(boolean desc) {
-    return "select new main.java.Hospitals.CountyVaccinePair(sum(vaccines), county) " +
+    return "select new main.java.Hospitals.CountyVaccinePair(county, sum(vaccines)) " +
             "FROM Hospital " +
             "group by county " +
             "order by sum(vaccines) "
@@ -92,4 +99,88 @@ public class MainController {
     return result;
 
   }
+
+  // total vaccines wasted for every day ever
+  @GetMapping(path="/byDate")
+  public @ResponseBody Iterable<TotalsByDay> getTotalByDay() {
+    Session session = AccessingMyData.sF.openSession();
+    session.beginTransaction();
+
+    List<TotalsByDay> result = session.createQuery(
+            "select new main.java.Hospitals.TotalsByDay(sum(vaccines), date) " +
+                    "FROM Hospital group by date", TotalsByDay.class).list();
+    session.getTransaction().commit();
+    session.close();
+
+    return result;
+
+  }
+
+  // we will get a county, we will sum the total vaccines for each hospital in the county
+  @GetMapping(path="/selectCounty")
+  public @ResponseBody Iterable<HospitalVaccinePair> getAllHospitals(@RequestParam String countyName) {
+    Session session = AccessingMyData.sF.openSession();
+    session.beginTransaction();
+
+    System.out.println(countyName);
+    String query = "select new main.java.Hospitals.HospitalVaccinePair(sum(vaccines), name) " +
+            "FROM Hospital where county = \'" + countyName + "\' group by name";
+    System.out.println(query);
+    List<HospitalVaccinePair> result = session.createQuery(
+            query, HospitalVaccinePair.class).list();
+    session.getTransaction().commit();
+    session.close();
+
+    return result;
+
+  }
+
+  // delete all
+  @GetMapping(path="/aaa")
+  public @ResponseBody Iterable<String> getAAA() {
+    Session session = AccessingMyData.sF.openSession();
+    session.beginTransaction();
+
+    userRepository.deleteAll();
+    File text = new File("C:\\page.txt");
+    Scanner s = new Scanner("");
+    try {
+      s = new Scanner(text);
+    } catch (FileNotFoundException f) { }
+
+    List<Hospital> loh = new ArrayList<Hospital>();
+    boolean b = true;
+    while(s.hasNextLine()) {
+       String str = s.nextLine();
+       String escape = StringEscapeUtils.unescapeJava(str);
+       System.out.println(escape.substring(1 + (b?1:0), escape.length() - 1));
+       Hospital h = jsonToHospital(escape.substring(1 + (b?1:0), escape.length() - 1));
+       loh.add(h);
+       b = false;
+    }
+
+    userRepository.saveAll(loh);
+
+    session.getTransaction().commit();
+    session.close();
+
+    return new ArrayList<String>();
+
+  }
+
+  private Hospital jsonToHospital(String s) {
+    JSONObject json = new JSONObject(s);
+    String d = (String)json.get("date");
+    System.out.println(d);
+    int year = (int)Long.parseLong(d.substring(0,4));
+    int month = (int)Long.parseLong(d.substring(5, 7));
+    int day = (int)Long.parseLong(d.substring(8));
+
+    Date newDate = new Date(year - 1900, month, day);
+    return new Hospital(newDate, (String)json.get("name"),
+            (String)json.get("county"), Long.parseLong(String.valueOf(json.get("vaccines"))));
+  }
 }
+
+
+//localhost:8080/HPB2021/selectCounty   all grand total vaccines wasted by hospitals in this county

@@ -5,7 +5,7 @@ public class CountyVaccinePair {
   private long totalCount;
   private String county;
 
-  public CountyVaccinePair(long totalCount, String county) {
+  public CountyVaccinePair(String county,long totalCount) {
     this.totalCount = totalCount;
     this.county = county;
   }
