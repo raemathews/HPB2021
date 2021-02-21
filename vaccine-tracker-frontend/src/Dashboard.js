@@ -25,7 +25,7 @@ class Dashboard extends React.Component {
         super(props);
         this.state = {
             tableData: [],
-            lineGraphData: props.lineGraphData
+            lineGraphData: []
         };
 
         this.handleFetch = this.handleFetch.bind(this);
@@ -41,13 +41,27 @@ class Dashboard extends React.Component {
     //localhost:8080/HPB2021/add    accepts a json
 
     componentDidMount() {
-
+        //default values for data table
         this.handleFetch("counties")
+
+        //mount data for line graph
+        fetch("http://localhost:8080/HPB2021/byDate")
+        .then(res => res.json())
+        .then(
+            (result) => {
+                this.setState({
+                    lineGraphData: result
+                });
+            },
+            (error) => {
+                console.log("error here");
+            }
+        )
+        console.log("after", endpoint);
     }
 
     handleFetch(endpoint) {
         var path = "http://localhost:8080/HPB2021/" + endpoint
-        console.log("before", endpoint);
         fetch(path)
         .then(res => res.json())
         .then(
@@ -60,7 +74,6 @@ class Dashboard extends React.Component {
                 console.log("error here");
             }
         )
-        console.log("after", endpoint);
     }
 
     handleChangeView(e) {
