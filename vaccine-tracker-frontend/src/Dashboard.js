@@ -2,22 +2,13 @@ import React from 'react';
 
 import { Row, Col } from 'react-simple-flex-grid';
 import "react-simple-flex-grid/lib/main.css";
-// import { StyledDashboard } from './Dashboard.styled.js';
+import { StyledDashboard } from './Dashboard.styled.js';
 import DataTable from './Table';
 import LineGraphComp from './LineGraphComp.js';
 import TableControls from './TableControls';
 import "./styles.css";
+import Header from "./Header";
 
-
-// function validate()
-// {
-//  var ddl = document.getElementById("cardtype");
-//  var selectedValue = ddl.options[ddl.selectedIndex].value;
-//     if (selectedValue == "selectcard")
-//    {
-//     alert("Please select a card type");
-//    }
-// }
 
 class Dashboard extends React.Component {
 
@@ -64,6 +55,7 @@ class Dashboard extends React.Component {
 
     handleLineGraphData() {
         fetch("http://localhost:8080/HPB2021/byDate")
+
             .then(res => res.json())
             .then((result) => {
                 result.map(dataPoint => {
@@ -132,31 +124,31 @@ class Dashboard extends React.Component {
 
     render() {
         return (
-            //<StyledDashboard>
-                <div className="cont mainn">
+            <>
+            <Header/>
+            <StyledDashboard>
+                <div >
                     {/*TITLE OF DASHBOARD PAGE*/}
-                    <Row>
-                        <Col className="pageTitle">Expired Vaccines</Col>
-                    </Row>
-                    <Row>
-                        <Col>{this.handleTotal()}</Col>
+                    <Row className="block">
+                        <h1><Col className="pageTitle">Dose Waste Dashboard</Col></h1>
                     </Row>
                     {/*DROPDOWN MENU*/}
                     <Row>
-                        <Col>
+                        <Col offset={2}>
                             <div>
-                                <label className="dataselection" htmlFor="tablevalues">View: </label>
+                                <label className="dataselection" htmlFor="tablevalues">View Table: </label>
                                 <select className="form-control mb-3" onChange={this.handleChangeView}>
-                                    <option value="topten">10 Most Wasteful Counties</option>
-                                    <option value="bottomten">10 Least Wasteful Counties</option>
+                                    <option className="select-items" value="topten">10 Most Wasteful Counties</option>
+                                    <option className="select-items" value="bottomten">10 Most Efficient Counties</option>
                                 </select>
                             </div>
                         </Col>
                     </Row>
 
                     {/*DATA VISUALIZATIONS*/}
-                    <Row align="center" >
+                    <Row align="center" gutter={43}>
                         <Col className="dataTable">
+
                             <DataTable data={
                                 this.state.tableData
                             } /></Col>
@@ -171,8 +163,14 @@ class Dashboard extends React.Component {
                         <Col>{/*FOOTER*/}</Col>
                     </Row>
 
+                    <br height={"30px"}>
+                    </br>
+                    <br>
+                    </br>
+
                 </div>
-            //</StyledDashboard>
+            </StyledDashboard>
+            </>
 
         )
     }

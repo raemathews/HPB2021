@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTable } from 'react-table';
 import TableControls from './TableControls.js';
+import { StyledTable } from './Table.styled.js'
 
 export default function DataTable({ data }) {
 
@@ -34,8 +35,8 @@ export default function DataTable({ data }) {
     });
 
     return (
-        <>
-        <table {...getTableProps()}>
+        <StyledTable>
+        <table className="table" {...getTableProps()}>
             <thead>
                 {headerGroups.map(headerGroup => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
@@ -49,7 +50,7 @@ export default function DataTable({ data }) {
                 {rows.map((row, i) => {
                     prepareRow(row)
                     return (
-                        <tr {...row.getRowProps()}>
+                        <tr className="cell" {...row.getRowProps()}>
                             {row.cells.map(cell => {
                                 return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                             })}
@@ -58,7 +59,7 @@ export default function DataTable({ data }) {
                 })}
             </tbody>
         </table>
-        </>
+        </StyledTable>
     );
 }
 

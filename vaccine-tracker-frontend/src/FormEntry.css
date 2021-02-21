@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+.form-entry h1 {
+  color: black !important;
+}
+
 .styled-form-wrapper {
   display: flex;
   justify-content: center;
@@ -12,6 +16,7 @@
   height: 50vh;
   padding: 0 20px;
   padding-top: 150px;
+  padding-bottom: 80px;
 }
 
 .styled-form {
