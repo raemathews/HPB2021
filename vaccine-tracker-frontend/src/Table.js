@@ -8,10 +8,6 @@ export default function DataTable({ data }) {
     const columns = React.useMemo(
         () => [
                     {
-                        Header: '#',
-                        accessor: 'rank',
-                    },
-                    {
                         Header: 'County',
                         accessor: 'county',
                     },
