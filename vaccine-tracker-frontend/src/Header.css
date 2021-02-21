@@ -1,11 +1,23 @@
-h1 {
+h1.header {
   text-align: left;
+  position: absolute;
+  padding-left: 100px;
 }
 
-.main {
+.mainn {
+  display: inline;
+}
+
+ul {
   display: inline;
 }
 
 li {
   list-style-type: none;
+}
+
+Button {
+  float: right;
+  margin-top: 50px;
+  margin-right: 50px;
 }
