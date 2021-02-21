@@ -127,22 +127,19 @@ class Dashboard extends React.Component {
             <>
             <Header/>
             <StyledDashboard>
-                <div className="cont mainn">
+                <div >
                     {/*TITLE OF DASHBOARD PAGE*/}
                     <Row className="block">
                         <h1><Col className="pageTitle">Dose Waste Dashboard</Col></h1>
-                    </Row>
-                    <Row>
-                        <Col offset={2}>{this.handleTotal()}</Col>
                     </Row>
                     {/*DROPDOWN MENU*/}
                     <Row>
                         <Col offset={2}>
                             <div>
-                                <label className="dataselection" htmlFor="tablevalues">View: </label>
+                                <label className="dataselection" htmlFor="tablevalues">View Table: </label>
                                 <select className="form-control mb-3" onChange={this.handleChangeView}>
-                                    <option value="topten">10 Most Wasteful Counties</option>
-                                    <option value="bottomten">10 Most Efficient Counties</option>
+                                    <option className="select-items" value="topten">10 Most Wasteful Counties</option>
+                                    <option className="select-items" value="bottomten">10 Most Efficient Counties</option>
                                 </select>
                             </div>
                         </Col>
@@ -165,6 +162,11 @@ class Dashboard extends React.Component {
                     <Row>
                         <Col>{/*FOOTER*/}</Col>
                     </Row>
+
+                    <br height={"30px"}>
+                    </br>
+                    <br>
+                    </br>
 
                 </div>
             </StyledDashboard>

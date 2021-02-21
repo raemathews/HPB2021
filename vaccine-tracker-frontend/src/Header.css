@@ -1,8 +1,3 @@
-h1.header {
-  text-align: left;
-  padding-left: 100px;
-  padding-top: none;
-}
 
 .mainn {
   display: inline;
@@ -16,24 +11,21 @@ ul {
     margin: 0;
     padding: 0;
     padding-top: 0;
-    padding-right: 9vw;
     list-style: none;
-    margin-right: 2rem;
     position: relative;
-    width: 90%;
+    width: 100%;
 }
 
 li {
   list-style-type: none;
   text-decoration: none;
   font-size: 1.5rem;
-  float: right;
+  float: center;
 }
 
 Button {
-  float: right;
   margin-top: 50px;
-  margin-right: 50px;
+  padding-left: 40vw;
 
 }
 
@@ -45,6 +37,8 @@ Button:hover {
   float: left;
   padding-top: none;
   color:  #24c5d4;
-  padding-left: 3%;
 
+}
+h2 {
+  padding-right: 25vw;
 }

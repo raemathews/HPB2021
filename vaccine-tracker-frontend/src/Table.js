@@ -5,53 +5,6 @@ import { StyledTable } from './Table.styled.js'
 
 export default function DataTable({ data }) {
 
-    data = [{
-        rank: '1',
-        county: 'Boston',
-        totalCount: '4,329',
-    },
-    {
-        rank: '2',
-        county: 'Boston',
-        totalCount: '4,329',
-    },
-    {
-        rank: '3',
-        county: 'Boston',
-        totalCount: '4,329',
-    },
-    {
-        rank: '4',
-        county: 'Boston',
-        totalCount: '4,329',
-    },
-    {
-        rank: '5',
-        county: 'Boston',
-        totalCount: '4,329',
-    },
-    {
-        rank: '6',
-        county: 'Boston',
-        totalCount: '4,329',
-    },
-    {
-        rank: '7',
-        county: 'Boston',
-        totalCount: '4,329',
-    },
-    {
-        rank: '8',
-        county: 'Boston',
-        totalCount: '4,329',
-    },
-    {
-        rank: '9',
-        county: 'Boston',
-        totalCount: '4,329',
-    },
-  ];
-
     const columns = React.useMemo(
         () => [
                     {

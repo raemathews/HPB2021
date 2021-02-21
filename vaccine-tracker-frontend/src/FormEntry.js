@@ -3,6 +3,7 @@ import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css";
 import styled from "styled-components";
 import "./FormEntry.css";
+import FormEntryHeader from './FormHeader.js';
 
 class FormEntry extends React.Component {
   constructor(props) {
@@ -88,6 +89,7 @@ class FormEntry extends React.Component {
   render() {
     return (
       <div className="form-entry">
+        <FormEntryHeader></FormEntryHeader>
         <div>
           <h1>Vaccine Waste Data Entry</h1>
         </div>

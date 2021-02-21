@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css";
 import styled from "styled-components";
-import "./FormEntry.css";
+import './FormEntryMod.css';
 import { Route, Redirect } from 'react-router-dom';
+import { render } from "@testing-library/react";
 
 class LogIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             auth: "",
-            password: ""
+            password: "",
+            redirect: false
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,44 +42,50 @@ class LogIn extends React.Component {
     }
 
     render() {
-        return (
-            <div className="form-entry">
-                <div>
-                    <h1>Vaccine Administrator Log In</h1>
-                </div>
-                <div className="styled-form-wrapper">
-                    <form className="styled-form" onSubmit={this.handleSubmit}>
-                        <label>
-                            {" "}
+        if (this.state.redirect) {
+            return (
+                <Redirect exact to={'/FormEntry'} />
+            )
+        }
+        else {
+            return (
+                <div className="form-entry">
+                    <div>
+                        <h1>Vaccine Administrator Log In</h1>
+                    </div>
+                    <div className="styled-form-wrapper">
+                        <form className="styled-form" onSubmit={this.handleSubmit}>
+                            <label>
+                                {" "}
               Authentication ID:{" "}
-                            <input
-                                className="search-box"
-                                value={this.state.auth}
-                                onChange={this.handleAuth}
-                            />
-                        </label>
-                        <label>
-                            {" "}
+                                <input
+                                    className="search-box"
+                                    value={this.state.auth}
+                                    onChange={this.handleAuth}
+                                />
+                            </label>
+                            <label>
+                                {" "}
               Password:{" "}
-                            <input
-                                className="search-box"
-                                value={this.state.password}
-                                onChange={this.handlePassword}
-                            />
-                        </label>
-                        <Route exact path="/LogIn">
-                            <button onClick={() => {
-                                this.state.auth === "MGH2118" && this.state.password === "password" ?
-                                    <Redirect to="/FormEntry" />
-                                    : <LogIn />
-                            }} >Log In</button>
+                                <input
+                                    className="search-box"
+                                    value={this.state.password}
+                                    onChange={this.handlePassword}
+                                />
+                            </label>
+                            <Route exact path="/LogIn">
+                                <button onClick={() => {
+                                    this.state.auth === "MGH2118" && this.state.password === "password" ?
+                                        this.setState({ redirect: true })
+                                        : <LogIn />
+                                }} >Log In</button>
 
-                        </Route>
-                        <input className="button" type="submit" value="Log In" />
-                    </form>
+                            </Route>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
     }
 }
 

@@ -30,7 +30,7 @@ export default function Header() {
 
     return (
       <ul className="mainn">
-        <li className="header"><h2>COVID-19 Vaccine Dose Waste</h2></li>
+        <li className="header"><h2>Vaccine Waste Tracker</h2></li>
         <li><NavLink 
           exact to={state} ><span id="log-in"><Button message={"Submit Data"} /></span></NavLink></li>
       </ul>
