@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css";
 import styled from "styled-components";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import "./FormEntry.css";
+//import "./FormEntry.css";
 
 class FormEntry extends React.Component {
   constructor(props) {
@@ -14,7 +12,8 @@ class FormEntry extends React.Component {
       hospital: "",
       county: "",
       date: "",
-      vaccines: 0
+      vaccines: 0,
+      json_post: ""
     };
 
     this.handleHospital = this.handleHospital.bind(this);
@@ -45,7 +44,7 @@ class FormEntry extends React.Component {
     let decision;
     confirmAlert({
       title: "Confirm to submit",
-      message: "Are you sure to do this.",
+      message: "Are you sure this is the right information?",
       buttons: [
         {
           label: "Yes",
@@ -57,9 +56,18 @@ class FormEntry extends React.Component {
         }
       ]
     });
-    console.log(this.state.hospital);
+    //if (decision) {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ county: this.state.county, date: this.state.date, name: this.state.hospital, 
+        vaccines: this.state.vaccines})
+    };
+    fetch('http://localhost:8080/HPB2021/add', requestOptions)
+      .then(response => response.json())
+      .then(data => this.setState({ json_post: this.state.county + this.state.date + this.state.hospital + this.state.vaccines }, () => console.log(this.state.json_post)));
     this.handleClear();
-    //console.log(d)
+  //}
     e.preventDefault();
   }
 
@@ -115,7 +123,7 @@ class FormEntry extends React.Component {
             <label>
               {" "}
               Vaccines:{" "}
-              <input
+              <input type="number"
                 className="search-box"
                 value={this.state.vaccines}
                 onChange={this.handleVaccines}
