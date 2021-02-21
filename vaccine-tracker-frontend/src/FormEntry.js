@@ -60,12 +60,13 @@ class FormEntry extends React.Component {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ county: this.state.county, date: this.state.date, name: this.state.hospital, 
+      body: JSON.stringify({ date: this.state.date, name: this.state.hospital, county: this.state.county,
         vaccines: this.state.vaccines})
     };
     fetch('http://localhost:8080/HPB2021/add', requestOptions)
-      .then(response => response.json())
-      .then(data => this.setState({ json_post: this.state.county + this.state.date + this.state.hospital + this.state.vaccines }, () => console.log(this.state.json_post)));
+    console.log("HI AGAIN ", requestOptions)
+      //.then(response => response.json())
+      //.then(data => this.setState({ json_post: this.state.county + this.state.date + this.state.hospital + this.state.vaccines }, () => console.log(this.state.json_post)));
     this.handleClear();
   //}
     e.preventDefault();

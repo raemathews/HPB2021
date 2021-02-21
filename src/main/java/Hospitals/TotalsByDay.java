@@ -1,4 +1,5 @@
 package main.java.Hospitals;
+import java.text.SimpleDateFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -9,32 +10,33 @@ import java.util.Date;
 public class TotalsByDay {
 
   // Formats output date when this DTO is passed through JSON
-  @JsonFormat(pattern = "dd/MM/yyyy")
+  @JsonFormat(pattern = "yyyy/MM/dd")
   // Allows dd/MM/yyyy date to be passed into GET request in JSON
-  @DateTimeFormat(pattern = "dd/MM/yyyy")
+  @DateTimeFormat(pattern = "yyyy/MM/dd")
 
-  private long total;
-  private Date date;
+  private long y;
+  private long x;
 
-  public TotalsByDay(long total, Date date) {
-    this.total = total;
-    this.date = date;
+  public TotalsByDay(Date x, long y) {
+
+    this.y = y;
+    this.x = x.getTime();
   }
 
-  public long getTotal() {
-    return total;
+  public long getY() {
+    return y;
   }
 
-  public void setTotal(long total) {
-    this.total = total;
+  public void setY(long y) {
+    this.y = y;
   }
 
-  public Date getDate() {
-    return date;
+  public long getX() {
+    return x;
   }
 
-  public void setDate(Date date) {
-    this.date = date;
+  public void setX(long x) {
+    this.x = x;
   }
 
 }
