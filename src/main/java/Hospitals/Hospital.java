@@ -12,9 +12,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Hospital {
 
   // Formats output date when this DTO is passed through JSON
-  @JsonFormat(pattern = "dd/MM/yyyy")
+  @JsonFormat(pattern = "yyyy/MM/dd")
   // Allows dd/MM/yyyy date to be passed into GET request in JSON
-  @DateTimeFormat(pattern = "dd/MM/yyyy")
+  @DateTimeFormat(pattern = "yyyy/MM/dd")
   private Date date;
   private String name;
   private @Id
