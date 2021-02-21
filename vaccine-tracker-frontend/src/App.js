@@ -4,6 +4,7 @@ import { BrowserRouter, NavLink } from 'react-router-dom';
 import { Switch, Route } from 'react-router-dom';
 import FormEntry from './FormEntry.js';
 import Header from "./Header";
+import Footer from "./Footer";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route component={Error} />
         </Switch>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 }
