@@ -1,32 +1,24 @@
 import React from 'react';
 import { useTable } from 'react-table';
+import TableControls from './TableControls.js';
 
 export default function DataTable({ data }) {
 
     const columns = React.useMemo(
         () => [
-            {
-                Header: 'Locations With Highest Waste',
-                columns: [
                     {
                         Header: '#',
                         accessor: 'rank',
                     },
                     {
-                        Header: 'Distribution Center',
-                        accessor: 'distributionCenter',
+                        Header: 'County',
+                        accessor: 'county',
                     },
                     {
-                        Header: 'Jurisdiction',
-                        accessor: 'jurisdiction',
-                    },
-                    {
-                        Header: 'Vaccines Wasted',
-                        accessor: 'wasted',
+                        Header: 'Wasted Vaccines',
+                        accessor: 'totalCount',
                     },
                 ],
-            },
-        ],
         []
     )
 
@@ -42,6 +34,7 @@ export default function DataTable({ data }) {
     });
 
     return (
+        <>
         <table {...getTableProps()}>
             <thead>
                 {headerGroups.map(headerGroup => (
@@ -65,6 +58,7 @@ export default function DataTable({ data }) {
                 })}
             </tbody>
         </table>
+        </>
     );
 }
 

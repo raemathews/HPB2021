@@ -5,7 +5,18 @@ import "react-simple-flex-grid/lib/main.css";
 import { StyledDashboard } from './Dashboard.styled.js';
 import DataTable from './Table';
 import LineGraphComp from './LineGraphComp.js';
+import TableControls from './TableControls';
 
+
+// function validate()
+// {
+//  var ddl = document.getElementById("cardtype");
+//  var selectedValue = ddl.options[ddl.selectedIndex].value;
+//     if (selectedValue == "selectcard")
+//    {
+//     alert("Please select a card type");
+//    }
+// }
 
 class Dashboard extends React.Component {
 
@@ -14,7 +25,11 @@ class Dashboard extends React.Component {
         this.state = {
             tableData: [],
             lineGraphData: props.lineGraphData
-        }
+        };
+
+        this.handleFetch = this.handleFetch.bind(this);
+        this.handleChangeView = this.handleChangeView.bind(this);
+        
     }
 
     //localhost:8080/HPB2021/all  every single entry
@@ -24,22 +39,36 @@ class Dashboard extends React.Component {
     //localhost:8080/HPB2021/add    accepts a json
 
     componentDidMount() {
-       fetch("localhost:8080/HPB2021/counties")
-       .then(res => res.json())
-       .then(
-         (result) => {
-           this.setState({
-             tableData: result
-           });
-         }, () => {console.log(this.state.tableData)},
-         // Note: it's important to handle errors here
-         // instead of a catch() block so that we don't swallow
-         // exceptions from actual bugs in components.
-         (error) => {
-           console.log("error here");
-         }
-       )
- 
+
+        this.handleFetch("counties")
+    }
+
+    handleFetch(endpoint) {
+        var path = "localhost:8080/HPB2021/" + endpoint
+        console.log("before", endpoint);
+        fetch(path)
+        .then(res => res.json())
+        .then(
+            (result) => {
+                this.setState({
+                    tableData: result
+                });
+            }, () => { console.log(this.state.tableData) },
+            (error) => {
+                console.log("error here");
+            }
+        )
+        console.log("after", endpoint);
+    }
+
+    handleChangeView(e) {
+        if(e.target.value === "topten") {
+            this.handleFetch("counties")
+        }
+        else {
+            this.handleFetch("counties?desc=false")
+        }
+
     }
 
     render() {
@@ -51,15 +80,28 @@ class Dashboard extends React.Component {
                         <Col className="pageTitle" offset={1}>Expired Vaccines</Col>
                     </Row>
 
-                    {/*DATA VISUALIZATIONS -- TEMPORARILY HARD CODED IN*/}
+                    {/*DROPDOWN MENU*/}
+                    <Row>
+                        <Col offset={1}>
+                            <div>
+                                <label className="dataselection" htmlFor="tablevalues">View: </label>
+                                <select className="form-control mb-3" onChange={this.handleChangeView}>
+                                    <option value="topten">10 Most Wasteful Counties</option>
+                                    <option value="bottomten">10 Least Wasteful Counties</option>
+                                </select>
+                            </div>
+                        </Col>
+                    </Row>
+
+                    {/*DATA VISUALIZATIONS*/}
                     <Row gutter={80} align="center" >
                         <Col className="dataTable" span={6}>
                             <DataTable data={
-                            this.state.tableData
-                        } /></Col>
+                                this.state.tableData
+                            } /></Col>
                         <Col className="lineGraph" span={6}><LineGraphComp dates={this.state.lineGraphData
 
-                        } /></Col> 
+                        } /></Col>
                     </Row>
 
                     {/*STATIC FOOTER*/}
