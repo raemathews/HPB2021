@@ -130,12 +130,8 @@ class Dashboard extends React.Component {
                     {/*DATA VISUALIZATIONS*/}
                     <Row align="center" >
                         <Col className="dataTable">
-                            <DataTable data={
-                                this.state.tableData
-                            } /></Col>
-                        <Col className="lineGraph"><LineGraphComp dates={this.state.lineGraphData
-
-                        } /></Col>
+                            <DataTable data={this.state.tableData} /></Col>
+                        <Col className="lineGraph"><LineGraphComp dates={this.state.lineGraphData} /></Col>
                     </Row>
 
                     {/*STATIC FOOTER*/}
