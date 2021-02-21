@@ -115,7 +115,7 @@ class FormEntry extends React.Component {
             </label>
             <label>
               {" "}
-              Date:{" "}
+              Date (yyyy/mm/dd): {""}
               <input
                 className="search-box"
                 value={this.state.date}
