@@ -44,7 +44,7 @@ class Dashboard extends React.Component {
     }
 
     handleFetch(endpoint) {
-        var path = "localhost:8080/HPB2021/" + endpoint
+        var path = "http://localhost:8080/HPB2021/" + endpoint
         console.log("before", endpoint);
         fetch(path)
         .then(res => res.json())
