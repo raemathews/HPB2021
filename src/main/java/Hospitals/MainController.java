@@ -142,6 +142,7 @@ public class MainController {
     session.beginTransaction();
 
     userRepository.deleteAll();
+
     File text = new File("C:\\page.txt");
     Scanner s = new Scanner("");
     try {
