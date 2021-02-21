@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ApexChart from 'react-apexcharts'
+import {StyledTable} from './Table.styled.js';
 
 
 export default class LineGraphComp extends React.Component {
@@ -28,7 +29,8 @@ export default class LineGraphComp extends React.Component {
                     }
                 },
                 dataLabels: {
-                    enabled: true
+                    enabled: true,
+
                 },
                 markers: {
                     size: 0,
@@ -50,12 +52,12 @@ export default class LineGraphComp extends React.Component {
                 },
                 theme: {
                     monochrome: {
-                      enabled: true,
-                      color: '#15929d',
-                      shadeTo: 'light',
-                      shadeIntensity: 0.65
+                        enabled: true,
+                        color: '#15929d',
+                        shadeTo: 'light',
+                        shadeIntensity: 0.65
                     }
-                  },
+                },
                 yaxis: {
                     labels: {
                         formatter: function (val) {
@@ -70,7 +72,6 @@ export default class LineGraphComp extends React.Component {
                 xaxis: {
                     fontFamily: 'Arial, sans-serif',
                     type: 'text',
-
                 },
                 tooltip: {
                     shared: false,
@@ -80,12 +81,13 @@ export default class LineGraphComp extends React.Component {
 
 
         };
-    } 
+    }
 
     render() {
         return (
-                <ApexChart options={this.state.options} series={this.state.series} type="area" height={350} />
-
+            <StyledTable>
+                <ApexChart className="table" options={this.state.options} series={this.state.series} type="area" height={484} />
+            </StyledTable>
         )
     }
 }
