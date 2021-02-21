@@ -22,6 +22,7 @@ class Dashboard extends React.Component {
         this.handleFetch = this.handleFetch.bind(this);
         this.handleChangeView = this.handleChangeView.bind(this);
         this.handleTotal = this.handleTotal.bind(this);
+        this.handleLineGraphData = this.handleLineGraphData.bind(this);
         
     }
 
@@ -36,18 +37,46 @@ class Dashboard extends React.Component {
         this.handleFetch("counties")
 
         //mount data for line graph
+
+        this.handleLineGraphData()
+        // fetch("http://localhost:8080/HPB2021/byDate")
+        //     .then(res => res.json())
+        //     .then((result) => {
+        //             this.setState({
+        //                  lineGraphData: result
+        //                  },
+        //                  console.log(result));
+        //         },
+        //         (error) => {
+        //             console.log("error here");
+        //         }
+        //     )
+    }
+
+    handleLineGraphData() {
         fetch("http://localhost:8080/HPB2021/byDate")
-        .then(res => res.json())
-        .then(
-            (result) => {
-                this.setState({
-                    lineGraphData: result
-                });
-            },
-            (error) => {
-                console.log("error here");
-            }
-        )
+
+            .then(res => res.json())
+            .then((result) => {
+                result.map(dataPoint => {
+                    dataPoint.x = new Date(dataPoint.x)
+
+                    return dataPoint
+                })
+                result.sort((a, b) => {
+                    return a.x - b.x
+                })
+                console.log(result)
+                      this.setState({
+                                        lineGraphData: result
+                                    });
+                  },() => {
+                      console.log(this.state.lineGraphData)
+                  },
+                  (error) => {
+                      console.log("error here");
+                  }
+            )
     }
 
     handleFetch(endpoint) {
@@ -82,7 +111,7 @@ class Dashboard extends React.Component {
         .then(res => res.json())
         .then(
             (result) => {
-                total = result.count
+                total = result
             },
             (error) => {
                 console.log("error here");
@@ -122,8 +151,14 @@ class Dashboard extends React.Component {
                     {/*DATA VISUALIZATIONS*/}
                     <Row align="center" gutter={43}>
                         <Col className="dataTable">
-                            <DataTable data={this.state.tableData} /></Col>
-                        <Col className="lineGraph"><LineGraphComp dates={this.state.lineGraphData} /></Col>
+
+                            <DataTable data={
+                                this.state.tableData
+                            } /></Col>
+                        {/*this.handleLineGraphData()*/}
+                        <Col className="lineGraph">
+                            <LineGraphComp dataset={this.state.lineGraphData} />
+                        </Col>
                     </Row>
 
                     {/*STATIC FOOTER*/}

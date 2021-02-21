@@ -1,0 +1,26 @@
+
+The purpose and inspiration:
+What drove you to build what you built? Whether you created something to solve a problem, or just for fun, judges like to know why. 
+We wanted to create a tool to help hospitals and other COVID-19 vaccine distribution centers to record and report vaccines that are wasted. The CDC reports
+that many vaccines are going to waste, but there is no concerted effort to track all of this waste
+
+The product itself:
+What did you actually create? Demonstrate what your project does, and how it works. This is your time to shine, so don’t hesitate to show off the parts 
+you are proud of.
+We build a dashboard to display wasted vaccines over time and by location. Also hospitals/distribution centers can report their wasted vaccines.
+
+The process:
+Your hackathon experience doesn’t just revolve around the final version of your project prototype, so it’s important to show your working process 
+throughout the weekend. What challenges did you face and how did you overcome them? Did your project idea change and evolve as you were working?
+Got stuck many times. 
+
+What did you learn?:
+Hopefully, you learned a lot of things this weekend! Did you try a new skill or improve on something you don’t have much experience with? 
+Maybe you did some design for the first time, or worked with people you haven’t met before! Judges like to see when you’ve stepped out of your comfort zone.
+None of us have ever done a hackathon (?). We all worked with technologies we had not before. Connecting the dots.
+
+What’s next for your project?
+Is there anything else you wish you had time to add to your project? How could you improve on your project in the future?
+There are definitely a lot of features we would have loved to implement with more time. Tracking which types/brands were wasted,
+creating a way for hospitals to log vaccines that are about to expire to connect to a public facing notification system where people can sign up to receive
+vaccines that would otherwise go bad, more ways to display the data (in a map, adding different filter metrics to the graph and table).

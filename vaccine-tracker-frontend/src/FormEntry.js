@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css";
 import styled from "styled-components";
-//import "./FormEntry.css";
+import "./FormEntry.css";
 
 class FormEntry extends React.Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class FormEntry extends React.Component {
       county: "",
       date: "",
       vaccines: 0,
-      json_post: ""
+      decision: false
     };
 
     this.handleHospital = this.handleHospital.bind(this);
@@ -48,24 +48,24 @@ class FormEntry extends React.Component {
       buttons: [
         {
           label: "Yes",
-          onClick: () => (decision = true)
+          onClick: () => (this.setState({ decision: true }), () => {
+            console.log(this.state.decision);
+          })
         },
         {
-          label: "No",
-          onClick: () => (decision = false)
+          label: "No"
         }
       ]
     });
-    //if (decision) {
+    //if (this.state.decision === true) {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ county: this.state.county, date: this.state.date, name: this.state.hospital, 
+      body: JSON.stringify({ date: this.state.date, name: this.state.hospital, county: this.state.county,
         vaccines: this.state.vaccines})
-    };
+    }
     fetch('http://localhost:8080/HPB2021/add', requestOptions)
-      .then(response => response.json())
-      .then(data => this.setState({ json_post: this.state.county + this.state.date + this.state.hospital + this.state.vaccines }, () => console.log(this.state.json_post)));
+    console.log("HI AGAIN ", requestOptions)
     this.handleClear();
   //}
     e.preventDefault();
