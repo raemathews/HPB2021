@@ -1,4 +1,5 @@
 # COVID-19 Vaccine Waste Tracker
+Team: Sreya Katabathuni, Rae Mathews, Elaina Phalen, Gabe Vordick
 
 ## The purpose and inspiration:
 What drove you to build what you built? Whether you created something to solve a problem, or just for fun, judges like to know why. 
